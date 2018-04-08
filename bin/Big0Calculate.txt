@@ -1,0 +1,54 @@
+https://cachhoc.net/2013/06/14/thuat-toan-p1-cach-tinh-do-phuc-tap-thuat-toan-algorithm-complexity/
+http://voer.edu.vn/m/do-phuc-tap-tinh-toan-va-tinh-hieu-qua-cua-thuat-toan/a51dc616
+
+1 số nguyên tắc:
++ Quy tắc bỏ hằng số:
+Nếu một đoạn chương trình P có thời gian thưc hiện T(n) = O(c1.f(n)) với c1 là 1 hắng số dương thì có thể coi đoạn chương trình có độ phức tạp tính toán là O(f(n)).
+
++ Quy tắc cộng lấy max:
+Nếu T1(n) và T2(n) là thời gian thực hiện của hai đoạn chương trình P1 và P1, T1(n)=O(f(n)) ,T2(n)=O(g(n)) thìthời gian thực hiện của hai chương trình nối tiếp nhau là T(n)=O(max(f(n),g(n)))
+VD:
+Lệnh gán x:=15 tốn một hằng thời  gian O(1) , lệnh đọc dữ liệu readln(x) tốn một hằng thời gian hay O(1).
+Vậy thời gian thực hiện cả hai lệnhtrên nối tiếp nhau là O(max(1,1)) = O(1).
+
++ Quy tắc nhân
+Nếu T1(n) và T2(n) là thời gian thực hiện của hai đoạn chương trình P1 và P2, T1(n) = O(f(n)),T2(n)= O(g(n)) thì thời gian thực hiện hai chương trình lồng nhau là T(n)=O(f(n).g(n)) 
+
+
+Quy tắc tổng quan phân tích một chương trình :
+
++ Thời gian thực hiện mỗi lệnh gán Read, Write là O(1).
++ Thời gian thực hiện một chuỗi tuần tự các lệnh được xác định bằng qui tắc cộng. Như vậy thời gian thi hành một lệnh nào đó lâu nhất trong chương trình -> mặc định là độ phức tạp của chuỗi tính toán liên tiếp đó.
++ Thời gian thực hiện cấu trúc IF là thời gian lớn nhất thực hiện  trong các lệnh: lệnh sau THEN hoặc ELSE, lệnh kiểm tra điều kiện trong IF.
++ THời gian thực hiện vòng lặp là tổng ( trên tất cả các lần lặp) thời gian thực hiện thân vòng lặp .Nếu thời gian thực hiện thân vòng lặp không đổi thì thời gian thực hiện vòng lặp là tích số lần lặp với thời gian thực hiện thân vòng lặp.
+
+
+VD:
+
+function search( a  : ARRAY[1..n] OF Integer, x: Integer) : Boolean;
+Var i :Integer;
+Found: Boolean;
+Begin
+	i : = 1;  (1)
+	found := false; (2)
+	while( i<=n) and (not Found) do  (3)
+	 if a[i]=x then found := true else i:= i+1  (4)
+	 search:= found (5)
+End
+Lệnh (1),(2), (3), (5) nối tiếp nhau ,do đó độ phức tạp thuật toán hàm Search nằm trong 4 lệnh này.
+Lệnh (1),(2), (5) đều có độ phức tạp O(1) nên độ phức tạp thuật toán chính là độ phức tạp lệnh (3).
+Lồng trong lệnh (3) là lệnh (4) có độ phức tạp O(1). Vạy trong trường hợp xấu nhất tất cả phần tử mảng a đều khác x thì vòng lặp 3 thực hiện n lần. Độ phức tạp thuật totán là O(n)
+
+
+Thành lập phương trình đệ quy:
+Phương trình đệ quy là một phương trình biểu hiện mối liên hệ giữa T(n) và T(k), trong đó T(n) là thời gian thực hiện chương trình với kích thước là n , T(k) là thời gian thực hiện chương trình với kích thước k, trong đó k< n.
+
+
+Phân tích các chương trình đệ quy:
+Với các chương trình có chương trình con đệ quy không thể áp dụng cách tính trên cần phải lập các phương trình đệ quy, sau đó giải phương trình đê quy , nghiệm nó là thời gian thực  hiện chương trình.
+
+Các hàm tiến triển khác
+
+Trong trường hợp hàm tiến triển không phải là một hàm nhân thì chúng ta không
+
+thể áp dụng các công thức ứng với ba trường hợp nói trên mà chúng ta phải tính trực tiếp nghiệm riêng, sau đó so sánh với nghiệm thuần nhất để lấy nghiệm lớn nhất trong hai nghiệm đó làm nghiệm của phương trình.
